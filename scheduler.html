@@ -33,12 +33,12 @@
                 <div class="container px-5 my-5">
                     <div class="text-center mb-5">
                         <h1 class="fw-bolder">Ahoj!</h1>
-                        <p class="lead fw-normal text-muted mb-0">Vítej na generátoru scriptu na volbu rozvrhu</p>
+                        <p class="lead fw-normal text-muted mb-0">Vítej na generátoru scriptu pro volbu rozvrhu</p>
                     </div>
                     <div class="row gx-5">
                         <div class="col-xl-6">
                             <!-- FAQ Accordion 1-->
-                            <h2 class="fw-bolder mb-3">Výběr rozvrhu</h2>
+                            <h2 class="fw-bolder mb-3">Volba rozvrhu</h2>
                             <div class="accordion mb-5" id="accordionExample">
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Přidat výběr bloku</button></h3>
@@ -84,6 +84,10 @@
                                             <label for="class_id">ID hodiny</label>
                                             <input type="text" id="class_id" class="form-control" placeholder="např. 700726" aria-label="..." aria-describedby="basic-addon2">
                                             <br>
+                                            <input id="checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                                            <label for="checkbox">Jedná se o poslední hodinu z tohoto předmětu</label>
+                                            <br>
+                                            <br>
                                             <button type="button" class="btn btn-secondary" onclick="addClass();">Přidat hodinu</button>
                                         </div>
                                     </div>
@@ -95,6 +99,7 @@
                             <h2 class="fw-bolder mb-3" style="margin-top: 15px;">Generování scriptu</h2>
                             <button type="button" class="btn btn-secondary" onclick="generate();">Generovat a zobrazit</button>
                             <button type="button" class="btn btn-secondary" style="margin-left: 10px;" onclick="copy();">Kopírovat do schránky</button>
+                            <button type="button" class="btn btn-secondary" style="margin-left: 10px;" onclick="download();">Stáhnout jako soubor</button>
                             <div class="card" style="margin-top: 20px;">
                                 <div class="card-body">
                                     <p class="mb-1">
@@ -104,11 +109,20 @@
                             </div>
                         </div>
                         <div class="col-xl-6">
-                            <h2 class="fw-bolder mb-3">Přehled scriptu</h2>
+                            <h2 class="fw-bolder mb-3">Průběh scriptu</h2>
                             <div id="result_div" style="padding-bottom: 20px;">
                                 <!-- <p>Zelená barva = výběr bloku<br>Modrá barva = výběr předmětu<br>Světle modrá barva = výběr určité hodiny předmětu</p> -->
                                 <ul id="result_list" class="list-group">
                                     
+                                </ul>
+                            </div>
+                            <div class="alert alert-light" role="alert">
+                                <strong>Operace se scriptem:</strong>
+                                <ul style="margin-top: 5px;">
+                                    <li>Levé kliknutí - posun části nahoru</li>
+                                    <li>Pravé kliknutí - posun části dolů</li>
+                                    <li>Kliknutí kolečkem - smazání části</li>
+                                    <li>Při přejetí myší po části scriptu se ukáže jeho kód</li>
                                 </ul>
                             </div>
                         </div>
