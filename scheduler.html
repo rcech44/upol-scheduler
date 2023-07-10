@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>UPOL Ultimate Scheduler</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/snackbar.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html">UPOL Ultimate Scheduler</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="scheduler.html">Scheduler</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page Content-->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bolder">Ahoj!</h1>
+                        <p class="lead fw-normal text-muted mb-0">Vítej na generátoru scriptu na volbu rozvrhu</p>
+                    </div>
+                    <div class="row gx-5">
+                        <div class="col-xl-6">
+                            <!-- FAQ Accordion 1-->
+                            <h2 class="fw-bolder mb-3">Výběr rozvrhu</h2>
+                            <div class="accordion mb-5" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Přidat výběr bloku</button></h3>
+                                    <div class="accordion-collapse collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <label for="block_name">Název bloku</label>
+                                            <input type="text" id="block_name" class="form-control" placeholder="např. Povinné předměty" aria-label="..." aria-describedby="basic-addon1">
+                                            <br>
+                                            <label for="block_id">ID bloku</label>
+                                            <input type="text" id="block_id" class="form-control" placeholder="např. 700726" aria-label="..." aria-describedby="basic-addon2">
+                                            <br>
+                                            <button type="button" class="btn btn-secondary" onclick="addBlock();">Přidat blok</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Přidat výběr předmětu</button></h3>
+                                    <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <label for="subject_block_name">Název bloku předmětu</label>
+                                            <input type="text" id="subject_block_name" class="form-control" placeholder="např. ZOO" aria-label="..." aria-describedby="basic-addon1">
+                                            <br>
+                                            <label for="subject_name">Název předmětu</label>
+                                            <input type="text" id="subject_name" class="form-control" placeholder="např. VEX" aria-label="..." aria-describedby="basic-addon2">
+                                            <br>
+                                            <label for="subject_semester_name">Zkratka semestru</label>
+                                            <input type="text" id="subject_semester_name" class="form-control" placeholder="např. LS" aria-label="..." aria-describedby="basic-addon3">
+                                            <br>
+                                            <label for="subject_category">Kategorie předmětu</label>
+                                            <input type="text" id="subject_category" class="form-control" placeholder="např. B" aria-label="..." aria-describedby="basic-addon4">
+                                            <br>
+                                            <button type="button" class="btn btn-secondary" onclick="addSubject();">Přidat volbu předmětu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Přidat výběr hodiny v předmětu</button></h3>
+                                    <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <label for="class_name">Název hodiny</label>
+                                            <input type="text" id="class_name" class="form-control" placeholder="např. VEX ve středu 17:00" aria-label="..." aria-describedby="basic-addon1">
+                                            <br>
+                                            <label for="class_id">ID hodiny</label>
+                                            <input type="text" id="class_id" class="form-control" placeholder="např. 700726" aria-label="..." aria-describedby="basic-addon2">
+                                            <br>
+                                            <button type="button" class="btn btn-secondary" onclick="addClass();">Přidat hodinu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <h2 class="fw-bolder mb-3" style="margin-top: 15px;">Generování scriptu</h2>
+                            <button type="button" class="btn btn-secondary" onclick="generate();">Generovat a zobrazit</button>
+                            <button type="button" class="btn btn-secondary" style="margin-left: 10px;" onclick="copy();">Kopírovat do schránky</button>
+                            <div class="card" style="margin-top: 20px;">
+                                <div class="card-body">
+                                    <p class="mb-1">
+                                        <code id="result_code">Zde bude výsledný kód</code>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <h2 class="fw-bolder mb-3">Přehled scriptu</h2>
+                            <div id="result_div" style="padding-bottom: 20px;">
+                                <!-- <p>Zelená barva = výběr bloku<br>Modrá barva = výběr předmětu<br>Světle modrá barva = výběr určité hodiny předmětu</p> -->
+                                <ul id="result_list" class="list-group">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Bc. Radomír Čech 2023 | VŠB-TUO</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="https://github.com/rcech44">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!--- Toast-->
+        <div id="snackbar">Some text some message..</div>
+    </body>
+</html>
